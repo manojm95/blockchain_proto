@@ -1,0 +1,65 @@
+Lecture 34: 
+
+We created multiple nodes by replacing 'start' in scripts in packag.json withnode1 to node5. We were able to pass ports dynamically 
+via these scripts as additional args to networknode.js as "process.argv[2]"
+
+in the ""node1": "nodemon --watch dev -e js dev/networknode.js 3001""
+
+'nodemon --watch dev -e js' is process.argv[0]
+'dev/networknode.js' is process.argv[1]
+'3001' is process.argv[2]
+
+
+
+
+Lecture 36:
+
+We have to let know each node the url where it would be hosted so we will add the URL after the port in scripts.
+
+"node1": "nodemon --watch dev -e js dev/networknode.js 3001 http://localhost:3001",
+    "node2": "nodemon --watch dev -e js dev/networknode.js 3002 http://localhost:3002",
+    "node3": "nodemon --watch dev -e js dev/networknode.js 3003 http://localhost:3003",
+    "node4": "nodemon --watch dev -e js dev/networknode.js 3004 http://localhost:3004",
+    "node5": "nodemon --watch dev -e js dev/networknode.js 3005 http://localhost:3005"Ï
+
+And add that to constructor function and an emoty array too for al other urls
+
+
+
+
+Lecture 37: 
+
+we introduce three post end points
+
+1. register and brodcast - one node will recive the new node notification and it will register and pass it to all nodes in n/w
+2. register - all nodes will register the new node's url
+3. register bulk - the node which brodcasted will send a post request back to new node with all urls of other nodes in the n/w.
+
+see video for any questions
+
+
+
+
+
+
+Lec 48:
+
+the below would be transformed in this lec to suit the decentalized property
+
+BlockChain.prototype.createNewTransaction = function(amount, sender, receiver) {
+    const newTransaction = {
+        amount: amount,
+        sender: sender,
+        receiver: receiver
+    }
+    this.pendingTransactions.push(newTransaction);
+    return this.getLastBlock()['index'] + 1;
+    // let y = {
+    //     name: 'manoj'
+    // }
+
+    //console.log(y['name']); ----> manoj
+
+}
+
+insted of current node havng new transaction all the nodes will have the transactions reflected
